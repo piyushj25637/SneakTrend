@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SneakTrend - Sign In / Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #111;
+            min-height: 100vh;
+        }
+        body {
+            background: radial-gradient(circle at 70% 80%, #2c0800 9%, transparent 50%), radial-gradient(circle at 30% 15%, #803800 15%, transparent 65%), #111;
+            color: #fff;
+        }
+        .center-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 76vh;
+        }
+        .brand-header {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+        .brand-header a{
+            font-size: 60px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #ff4116;
+            margin-bottom: 6px;
+        }
+        .brand-header p {
+            color: #d1d1d1;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .auth-container {
+            width: 400px;
+            padding: 38px 28px 30px 28px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(40,30,20,0.06), 0 4px 12px rgba(255,76,30,0.088);
+        }
+        .auth-container h2 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+        .auth-container p {
+            color: #b1b1b7;
+            margin-top: 0;
+            margin-bottom: 14px;
+        }
+        
+        .tab-switch {
+            display: flex;
+            background: #232325;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 26px;
+        }
+        .tab-label {
+            flex: 1;
+            padding: 12px 0;
+            font-size: 1.09rem;
+            text-align: center;
+            cursor: pointer;
+            background: transparent;
+            color: #c6c6c6;
+            font-weight: 500;
+            transition: background 0.18s, color 0.18s;
+            user-select: none;
+        }
+        #tab-signin:checked ~ .tab-switch label[for="tab-signin"],
+        #tab-signup:checked ~ .tab-switch label[for="tab-signup"] {
+            background: linear-gradient(90deg, #232325 15%, #ff4116 100%);
+            color: #fff;
+        }
+        
+        .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 13px;
+            animation: fadein 0.28s;
+        }
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #tab-signin:checked ~ .auth-forms #signin-form,
+        #tab-signup:checked ~ .auth-forms #signup-form {
+            display: flex;
+        }
+        .auth-form label {
+            font-size: 1rem;
+            margin-bottom: 2px;
+            color: #e1e1e6;
+            font-weight: 500;
+        }
+        .auth-form input {
+            padding: 11px 12px;
+            border-radius: 6px;
+            border: 1.2px solid #232840;
+            background: #151518;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+        .auth-form input:focus {
+            border-color: #ff4116;
+        }
+        .auth-form .submit-btn {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(90deg,#ff4116 50%,#ff6716 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        .auth-form .submit-btn:hover {
+            background: linear-gradient(90deg,#ff842b 60%,#ff4116 100%);
+        }
+        .alt-link {
+            text-align: right;
+            font-size: 0.99rem;
+            margin-top: -7px;
+            margin-bottom: 10px;
+            color: #ff8530;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .terms-text {
+            color: #908a85;
+            margin: 24px 0 4px 0;
+            font-size: 0.99rem;
+            text-align: center;
+        }
+        .terms-text a {
+            color: #ff5724;
+            text-decoration: none;
+        }
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        #tab-signin, #tab-signup { display: none; }
+
+        @media (max-width: 600px) {
+            .auth-container { width: 97vw; padding: 18px 2vw 18px 2vw; }
+            .brand-header h1 { font-size: 2.3rem; }
+            .navbar { flex-direction: column; gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="center-box">
+        <div class="brand-header">
+            <h1><a href="Capstone.html">SneakTrend</a></h1>
+            <p>Step into the future of sneaker culture</p>
+        </div>
+        <div class="auth-container" id="auth-block">
+            <h2>Get Started</h2>
+            <p>Sign in to your account or create a new one</p>
+        
+            <input type="radio" name="tab" id="tab-signin" checked>
+            <input type="radio" name="tab" id="tab-signup">
+            <div class="tab-switch">
+                <label class="tab-label" for="tab-signin">Sign In</label>
+                <label class="tab-label" for="tab-signup">Sign Up</label>
+            </div>
+            <div class="auth-forms">
+      
+                <form id="signin-form" class="auth-form" autocomplete="on">
+                    <label for="signin-email">Email</label>
+                    <input type="email" id="signin-email" placeholder="your@email.com" required>
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter password" required>
+                    <span class="alt-link" title="Password reset coming soon!">Forgot Password?</span>
+                    <button class="submit-btn" type="submit">Sign In</button>
+                </form>
+    
+                <form id="signup-form" class="auth-form" autocomplete="on">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="John Doe" required>
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" placeholder="your@email.com" required>
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password (min. 8 characters)" required>
+                    <button class="submit-btn" type="submit">Create Account</button>
+                </form>
+            </div>
+            <div class="terms-text">
+                By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
